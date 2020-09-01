@@ -1,0 +1,188 @@
+{{>layout/header}}
+<main>
+<!--    <div class="preloader bg-dark flex-column justify-content-center align-items-center">-->
+<!--        <svg id="loader-logo" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 64 78.4">-->
+<!--            <path fill="#fff" d="M10,0h1.2V11.2H0V10A10,10,0,0,1,10,0Z"/>-->
+<!--            <rect fill="none" stroke="#fff" stroke-width="11.2" x="40" y="17.6" width="0" height="25.6"/>-->
+<!--            <rect fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="11.2" x="23" y="35.2" width="0" height="25.6"/>-->
+<!--            <path fill="#fff" d="M52.8,35.2H64V53.8a7,7,0,0,1-7,7H52.8V35.2Z"/>-->
+<!--            <rect fill="none" stroke="#fff" stroke-width="11.2" x="6" y="52.8" width="0" height="25.6"/>-->
+<!--            <path fill="#fff" d="M52.8,0H57a7,7,0,0,1,7,7h0v4.2H52.8V0Z"/>-->
+<!--            <rect fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="11.2" x="57.8" y="17.6" width="0" height="11.2"/>-->
+<!--            <rect fill="none" stroke="#fff" stroke-width="11.2" x="6" y="35.2" width="0" height="11.2"/>-->
+<!--            <rect fill="none" stroke="#fff" stroke-width="11.2" x="40.2" y="49.6" width="0" height="11.2"/>-->
+<!--            <path fill="#fff" d="M17.6,67.2H28.8v1.2a10,10,0,0,1-10,10H17.6V67.2Z"/>-->
+<!--            <rect fill="none" stroke="#fff" stroke-opacity="0.4" stroke-width="28.8" x="31.6" width="0" height="11.2"/>-->
+<!--            <rect fill="none" stroke="#fff" x="14" stroke-width="28.8" y="17.6" width="0" height="11.2"/>-->
+<!--        </svg>-->
+<!--    </div>-->
+    <!-- Hero -->
+    <div class="section-header pb-6 bg-primary text-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 text-center">
+                    <h1 class="display-3 mb-4 ">Popovers</h1>
+                    <p class="lead mb-5">Use Pixel's custom popovers to indicate extra information when clicking on certain elements.</p>
+                    <div class="alert alert-secondary align-items-center" role="alert">
+                        <span class="alert-inner--icon"><span class="fas fa-info-circle"></span></span>
+                        <a class="font-weight-bold" href="https://themesberg.com/docs/pixel-bootstrap/components/popovers/" target="_blank">See our Documentation</a> for a detailed technical explanation.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Hero -->
+    <h1> 안녕하세요!</h1>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="/post-save" role="button" class="btn btn-primary">글 등록</a>
+                {{#userName}}
+                    <img src="{{img}}" width="300px" alt="이미지"/>
+                    Logged in as : <span id="user">{{userName}}</span>
+
+                    <a href="/logout" class="btn btn-info active" role="button">로그아웃</a>
+                {{/userName}}
+                {{^userName}}
+                    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">구글 로그인</a>
+                    <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">네이버 로그인</a>
+                    <a href="/oauth2/authorization/kakao" class="btn btn-warning active" role="button">카카오 로그인</a>
+                {{/userName}}
+            </div>
+            <br>
+            <table class="table table-horizontal table-bordered">
+                <thead class="thead-strong">
+                <tr>
+                    <th>게시글 번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>수정일</th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                {{#posts}}
+                    <tr>
+                        <td>{{id}}</td>
+                        <td><a href="/post/update/{{id}}">{{title}}</a></td>
+                        <td>{{author}}</td>
+                        <td>{{modifiedDate}}</td>
+                    </tr>
+                {{/posts}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Section -->
+    <div class="section section-md">
+        <div class="container">
+            <!-- End of Title -->
+            <div class="row mt-5">
+                <div class="col-lg-12 d-block d-lg-flex justify-content-around">
+                    <button type="button" class="btn btn-sm btn-secondary mb-3" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                        Popover on top
+                    </button>
+
+                    <button type="button" class="btn btn-sm btn-secondary mb-3" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                        Popover on right
+                    </button>
+
+                    <button type="button" class="btn btn-sm btn-secondary mb-3" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                        Popover on bottom
+                    </button>
+
+                    <button type="button" class="btn btn-sm btn-secondary mb-3" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                        Popover on left
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Section -->
+
+    <section class="section section-lg bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <h2 class="h1 font-weight-light mb-3"><strong>Open source</strong> project</h2>
+                    <p class="lead mb-4">Pixel Lite is an open source UI Kit that is licensed under the very permissive MIT License. Consider giving us a star on the official Github repository to spread the news!</p>
+                    <div class="d-flex align-items-center">
+                        <a href="https://github.com/themesberg/pixel-bootstrap-ui-kit" target="_blank" class="btn btn-tertiary mr-4 animate-up-2">
+                            View on GitHub
+                        </a>
+                        <!-- Place this tag where you want the button to render. -->
+                        <div class="mt-2">
+                            <!-- Place this tag where you want the button to render. -->
+                            <a class="github-button" href="https://github.com/themesberg/pixel-bootstrap-ui-kit" data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star themesberg/pixel-bootstrap-ui-kit on GitHub">Star</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="github-big-icon">
+                        <span class="fab fa-github"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-6">
+                <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+                    <div class="card border-light p-4">
+                        <!-- Header -->
+                        <div class="card-header bg-white pb-0">
+                        <span class="d-block">
+                            <span class="h3 text-primary font-weight-bold align-top">
+                                Free Version
+                            </span>
+                        </span>
+                        </div>
+                        <!-- End Header -->
+                        <!-- Content -->
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush price-list">
+                                <li class="list-group-item bg-white pl-0"><strong>80</strong> Components</li>
+                                <li class="list-group-item bg-white pl-0"><strong>4</strong> Example Pages</li>
+                                <li class="list-group-item bg-white pl-0"><span class="icon-danger"><span class="fas fa-times-circle"></span></span> Uncoventional cards</li>
+                                <li class="list-group-item bg-white pl-0"><span class="icon-danger"><span class="fas fa-times-circle"></span></span> Timelines</li>
+                                <li class="list-group-item bg-white pl-0"><span class="icon-danger"><span class="fas fa-times-circle"></span></span> E-commerce</li>
+                                <li class="list-group-item bg-white pl-0"><span class="icon-danger"><span class="fas fa-times-circle"></span></span> Charts</li>
+                                <li class="list-group-item bg-white pl-0 pb-0"><span class="icon-danger"><span class="fas fa-times-circle"></span></span> Premium Support</li>
+                            </ul>
+                        </div>
+                        <!-- End Content -->
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0 mt-lg-n5">
+                    <div class="card border-light p-4">
+                        <!-- Header -->
+                        <div class="card-header bg-white pb-0">
+                        <span class="d-block">
+                            <span class="h3 text-primary font-weight-bold align-top">
+                               Pro Version
+                            </span>
+                        </span>
+                        </div>
+                        <!-- End Header -->
+                        <!-- Content -->
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush price-list mb-5">
+                                <li class="list-group-item bg-white pl-0"><strong>1000+</strong> Components</li>
+                                <li class="list-group-item bg-white pl-0"><strong>17</strong> Example Pages</li>
+                                <li class="list-group-item bg-white pl-0"><span class="icon-success"><span class="fas fa-check-circle"></span></span> Uncoventional cards</li>
+                                <li class="list-group-item bg-white pl-0"><span class="icon-success"><span class="fas fa-check-circle"></span></span> Timelines</li>
+                                <li class="list-group-item bg-white pl-0"><span class="icon-success"><span class="fas fa-check-circle"></span></span> E-commerce</li>
+                                <li class="list-group-item bg-white pl-0"><span class="icon-success"><span class="fas fa-check-circle"></span></span> Charts</li>
+                                <li class="list-group-item bg-white border-0 pl-0 pb-0"><span class="icon-success"><span class="fas fa-check-circle"></span></span> Premium Support</li>
+                            </ul>
+                            <a href="https://demo.themesberg.com/pixel-pro/" target="_blank" class="btn btn-block btn-tertiary mr-4 animate-up-2">
+                                Live demo <span class="fas fa-external-link-alt ml-2"></span>
+                            </a>
+                        </div>
+                        <!-- End Content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+{{>layout/footer}}
