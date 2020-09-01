@@ -34,6 +34,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
     compile('org.springframework.session:spring-session-jdbc')
     compile group: 'com.drewnoakes', name: 'metadata-extractor', version: '2.11.0'
+    compile("org.mariadb.jdbc:mariadb-java-client")
 
 
 }
