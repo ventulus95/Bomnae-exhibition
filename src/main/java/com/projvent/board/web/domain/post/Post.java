@@ -1,14 +1,12 @@
 package com.projvent.board.web.domain.post;
 
 import com.projvent.board.web.domain.BaseTimeEntity;
+import com.projvent.board.web.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @Getter
@@ -26,16 +24,18 @@ public class Post extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    private String author;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(columnDefinition = "TEXT")
     private String filePath;
 
     @Builder
-    public Post(String title, String content, String author, String filePath){
+    public Post(String title, String content, User user, String filePath){
         this.title = title;
         this.content = content;
-        this.author = author;
+        this.user = user;
         this.filePath = filePath;
     }
 

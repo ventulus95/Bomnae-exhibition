@@ -1,4 +1,4 @@
-package com.projvent.board.web.domain.upload;
+package com.projvent.board.service.upload;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

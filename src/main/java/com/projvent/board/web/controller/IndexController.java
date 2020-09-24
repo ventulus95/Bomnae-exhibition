@@ -1,4 +1,4 @@
-package com.projvent.board.web;
+package com.projvent.board.web.controller;
 
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
@@ -9,7 +9,7 @@ import com.projvent.board.config.auth.LoginUser;
 import com.projvent.board.config.auth.dto.SessionUser;
 import com.projvent.board.service.comment.CommentService;
 import com.projvent.board.service.posts.PostsService;
-import com.projvent.board.web.domain.upload.S3Service;
+import com.projvent.board.service.upload.S3Service;
 import com.projvent.board.web.dto.comment.CommentResponseDto;
 import com.projvent.board.web.dto.post.PostsResponseDto;
 import lombok.RequiredArgsConstructor;

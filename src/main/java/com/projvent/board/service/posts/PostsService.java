@@ -37,10 +37,10 @@ public class PostsService {
 
     @Transactional(readOnly = true)
     public List<postListResponseDto> findAllDesc(){
-        return postRepository.findALlDesc().stream()
+        return postRepository.findAllDesc().stream()
                 .map(postListResponseDto::new)
                 .collect(Collectors.toList());
-    }
+     }
 
     @Transactional
     public void delete(Long id){

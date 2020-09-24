@@ -2,6 +2,7 @@ package com.projvent.board.web.domain.comment;
 
 import com.projvent.board.web.domain.BaseTimeEntity;
 import com.projvent.board.web.domain.post.Post;
+import com.projvent.board.web.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,10 +26,15 @@ public class Comment extends BaseTimeEntity {
     @JoinColumn(name = "post_id")
     private Post post;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @Builder
-    public Comment(String comment, Post Post){
+    public Comment(String comment, Post Post, User user){
         this.comment = comment;
         this.post = Post;
+        this.user = user;
     }
 
 }

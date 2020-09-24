@@ -1,6 +1,7 @@
 package com.projvent.board.web.dto.post;
 
 import com.projvent.board.web.domain.post.Post;
+import com.projvent.board.web.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -8,11 +9,12 @@ import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
 @Getter
+@Setter
 @RequiredArgsConstructor
 public class PostsSaveRequestDto {
     private String title;
     private String content;
-    private String author;
+    private User user;
 //    private MultipartFile file;
 //    private String filePath;
 
@@ -21,10 +23,10 @@ public class PostsSaveRequestDto {
 //    }
 
     @Builder
-    public PostsSaveRequestDto(String title, String content, String author){
+    public PostsSaveRequestDto(String title, String content, User user){
         this.title = title;
         this.content = content;
-        this.author = author;
+        this.user = user;
 //        this.filePath = filePath;
     }
 
@@ -32,7 +34,7 @@ public class PostsSaveRequestDto {
         return Post.builder()
                 .title(title)
                 .content(content)
-                .author(author)
+                .user(user)
 //                .filePath(filePath)
                 .build();
     }

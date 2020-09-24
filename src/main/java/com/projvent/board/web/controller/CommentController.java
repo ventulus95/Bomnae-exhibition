@@ -1,6 +1,10 @@
-package com.projvent.board.web;
+package com.projvent.board.web.controller;
 
+import com.projvent.board.config.auth.LoginUser;
+import com.projvent.board.config.auth.dto.SessionUser;
 import com.projvent.board.service.comment.CommentService;
+import com.projvent.board.web.domain.user.User;
+import com.projvent.board.web.domain.user.UserRepository;
 import com.projvent.board.web.dto.comment.CommentResponseDto;
 import com.projvent.board.web.dto.comment.CommentSaveDto;
 import com.projvent.board.web.dto.post.PostsSaveRequestDto;
@@ -9,12 +13,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
 public class CommentController {
 
     private final CommentService commentService;
+    private final UserRepository userRepository;
 
     @GetMapping("/api/v1/posts/{id}/comment")
     public List<CommentResponseDto> getPostByComment(@PathVariable Long id){
@@ -22,7 +28,9 @@ public class CommentController {
     }
 
     @PostMapping("/api/v1/posts/{id}/comment")
-    public Long save(@RequestBody CommentSaveDto dto, @PathVariable Long id) throws IOException {
+    public Long save(@RequestBody CommentSaveDto dto, @PathVariable Long id, @LoginUser SessionUser user) throws IOException {
+        Optional<User> user1 = userRepository.findByEmail(user.getEmail());
+        dto.setUser(user1.get());
         return commentService.saveComment(id, dto);
     }
 }
