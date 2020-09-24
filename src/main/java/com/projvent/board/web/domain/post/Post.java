@@ -17,6 +17,7 @@ public class Post extends BaseTimeEntity {
 
     @Id
     @GeneratedValue
+    @Column(name = "post_id")
     private Long Id;
 
     @Column(length = 50, nullable = false)
@@ -27,15 +28,20 @@ public class Post extends BaseTimeEntity {
 
     private String author;
 
+    @Column(columnDefinition = "TEXT")
+    private String filePath;
+
     @Builder
-    public Post(String title, String content, String author){
+    public Post(String title, String content, String author, String filePath){
         this.title = title;
         this.content = content;
         this.author = author;
+        this.filePath = filePath;
     }
 
-    public void update(String title, String content){
+    public void update(String title, String content, String filePath){
         this.title = title;
         this.content = content;
+        this.filePath = filePath;
     }
 }

@@ -2,10 +2,10 @@ package com.projvent.board.service.posts;
 
 import com.projvent.board.web.domain.post.Post;
 import com.projvent.board.web.domain.post.PostRepository;
-import com.projvent.board.web.dto.PostsResponseDto;
-import com.projvent.board.web.dto.PostsSaveRequestDto;
-import com.projvent.board.web.dto.PostsUpadteRequestDto;
-import com.projvent.board.web.dto.postListResponseDto;
+import com.projvent.board.web.dto.post.PostsResponseDto;
+import com.projvent.board.web.dto.post.PostsSaveRequestDto;
+import com.projvent.board.web.dto.post.PostsUpadteRequestDto;
+import com.projvent.board.web.dto.post.postListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +26,7 @@ public class PostsService {
     @Transactional
     public Long update(Long id, PostsUpadteRequestDto dto) {
         Post post = postRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 게시글이 없습니다. id ="+id));
-        post.update(dto.getTitle(), dto.getContent());
+        post.update(dto.getTitle(), dto.getContent(), dto.getTitle());
         return id;
     }
 

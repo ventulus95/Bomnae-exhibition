@@ -1,20 +1,22 @@
-package com.projvent.board.web.dto;
+package com.projvent.board.web.dto.post;
 
 import com.projvent.board.web.domain.post.Post;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
-public class PostsResponseDto {
+public class postListResponseDto {
 
     private Long id;
     private String title;
-    private String content;
     private String author;
+    private LocalDateTime modifiedDate;
 
-    public PostsResponseDto(Post entity){
+    public postListResponseDto(Post entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
-        this.content = entity.getContent();
         this.author = entity.getAuthor();
+        this.modifiedDate = entity.getModifiedDate();
     }
 }

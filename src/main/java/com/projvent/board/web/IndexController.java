@@ -7,8 +7,11 @@ import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
 import com.projvent.board.config.auth.LoginUser;
 import com.projvent.board.config.auth.dto.SessionUser;
+import com.projvent.board.service.comment.CommentService;
 import com.projvent.board.service.posts.PostsService;
-import com.projvent.board.web.dto.PostsResponseDto;
+import com.projvent.board.web.domain.upload.S3Service;
+import com.projvent.board.web.dto.comment.CommentResponseDto;
+import com.projvent.board.web.dto.post.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,13 +21,16 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
 
     private final PostsService postsService;
+    private final CommentService commentService;
     private final HttpSession httpSession;
+    private final S3Service s3Service;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user){
@@ -33,7 +39,7 @@ public class IndexController {
             model.addAttribute("userName", user.getName());
             model.addAttribute("img", user.getPicture());
         }
-        return "index";
+        return "index"; 
     }
 
     @GetMapping("/post-save")
@@ -44,7 +50,9 @@ public class IndexController {
     @GetMapping("/post/update/{id}")
     public String postUpdate(@PathVariable Long id, Model model){
         PostsResponseDto dto = postsService.findById(id);
+        List<CommentResponseDto> commentlist =commentService.findAll(id);
         model.addAttribute("post", dto);
+        model.addAttribute("list", commentlist);
         return "post-update";
     }
 
@@ -83,5 +91,17 @@ public class IndexController {
         }
         return "redirect:/";
 
+    }
+
+    @PostMapping("/api/v1/s3upload")
+    public String execWrite( MultipartFile file) throws IOException {
+        String imgPath = s3Service.upload(file);
+        System.out.println(imgPath);
+        return "redirect:/";
+    }
+
+    @GetMapping("/admin")
+    public String admin(){
+        return "admin";
     }
 }

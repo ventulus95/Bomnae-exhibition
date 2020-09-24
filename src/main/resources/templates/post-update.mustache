@@ -24,5 +24,34 @@
         <button type="button" class="btn btn-primary"  id="btn-update">수정</button>
         <button type="button" class="btn btn-danger"  id="btn-delete">삭제</button>
     </div>
+    <div class="col-md-4">
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th>댓글</th>
+                <th>수정일</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#list}}
+                <tr>
+                    <td>{{comment}}</td>
+                    <td>{{modifiedDate}}</td>
+                </tr>
+            {{/list}}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h3>댓글 달기</h3>
+        <form>
+            <div class="form-group">
+                <label for="content">설명</label>
+                <textarea class="form-control" id="comment" placeholder="본문을 작성해주세요"></textarea>
+            </div>
+        </form>
+        <button type="button" class="btn btn-primary"  id="btn-comment-save">등록</button>
+    </div>
 </div>
+
 {{>layout/footer}}

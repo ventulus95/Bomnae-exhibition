@@ -35,6 +35,8 @@ dependencies {
     compile('org.springframework.session:spring-session-jdbc')
     compile group: 'com.drewnoakes', name: 'metadata-extractor', version: '2.11.0'
     compile("org.mariadb.jdbc:mariadb-java-client")
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.1.RELEASE'
+
 
 
 }

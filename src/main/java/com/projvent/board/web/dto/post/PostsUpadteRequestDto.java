@@ -1,4 +1,4 @@
-package com.projvent.board.web.dto;
+package com.projvent.board.web.dto.post;
 
 import lombok.Builder;
 import lombok.Getter;

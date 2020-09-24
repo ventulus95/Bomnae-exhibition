@@ -2,8 +2,8 @@ package com.projvent.board;
 
 import com.projvent.board.web.domain.post.Post;
 import com.projvent.board.web.domain.post.PostRepository;
-import com.projvent.board.web.dto.PostsSaveRequestDto;
-import com.projvent.board.web.dto.PostsUpadteRequestDto;
+import com.projvent.board.web.dto.post.PostsSaveRequestDto;
+import com.projvent.board.web.dto.post.PostsUpadteRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
