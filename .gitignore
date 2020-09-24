@@ -35,3 +35,4 @@ out/
 
 application-oauth.properties
 application-real-db.properties
+applicaiton-s3.properties
