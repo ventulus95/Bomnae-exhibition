@@ -94,9 +94,36 @@ var commentJS = {
     }
 };
 
+var gusetbookJS = {
+    init: function(){
+        var _this = this;
+        $('#btn-guestbook-save').on('click', function(){
+            _this.save();
+        });
+    },
+    save : function () {
+        var data = {
+            comment: $('#comment').val()
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/guestbook',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('글이 등록되었습니다.');
+            window.location.href = '/guestbook';
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    }
+};
+
 
 buttonJS.init();
 commentJS.init();
+gusetbookJS.init();
 
 $(document).ready(function () {
     $('#modal-default').modal('show');

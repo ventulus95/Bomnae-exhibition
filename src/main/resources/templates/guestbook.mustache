@@ -1,0 +1,30 @@
+{{>layout/header}}
+<table class="table table-horizontal table-bordered">
+    <thead class="thead-strong">
+    <tr>
+        <th>방명록</th>
+        <th>작성자</th>
+        <th>수정일</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    {{#guestbook}}
+        <tr>
+            <td>{{guestbook}}</td>
+            <td>{{user.name}}</td>
+            <td>{{modifiedDate}}</td>
+        </tr>
+    {{/guestbook}}
+    </tbody>
+    <div class="col-md-4">
+        <h3>방명록 남기기</h3>
+        <form>
+            <div class="form-group">
+                <label for="content">설명</label>
+                <textarea class="form-control" id="comment" placeholder="본문을 작성해주세요"></textarea>
+            </div>
+        </form>
+        <button type="button" class="btn btn-primary"  id="btn-guestbook-save">등록</button>
+    </div>
+</table>
+{{>layout/footer}}

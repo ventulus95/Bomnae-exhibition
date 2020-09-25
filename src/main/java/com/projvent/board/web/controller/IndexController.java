@@ -7,6 +7,7 @@ import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
 import com.projvent.board.config.auth.LoginUser;
 import com.projvent.board.config.auth.dto.SessionUser;
+import com.projvent.board.service.Guestbook.GuestbookService;
 import com.projvent.board.service.comment.CommentService;
 import com.projvent.board.service.posts.PostsService;
 import com.projvent.board.service.upload.S3Service;
@@ -31,6 +32,7 @@ public class IndexController {
     private final CommentService commentService;
     private final HttpSession httpSession;
     private final S3Service s3Service;
+    private final GuestbookService guestbookService;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user){
@@ -103,5 +105,11 @@ public class IndexController {
     @GetMapping("/admin")
     public String admin(){
         return "admin";
+    }
+
+    @GetMapping("/guestbook")
+    public String guestbook(Model model){
+        model.addAttribute("guestbook", guestbookService.findAllDesc());
+        return "guestbook";
     }
 }

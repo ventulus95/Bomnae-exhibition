@@ -7,7 +7,6 @@ import com.projvent.board.web.domain.user.User;
 import com.projvent.board.web.domain.user.UserRepository;
 import com.projvent.board.web.dto.comment.CommentResponseDto;
 import com.projvent.board.web.dto.comment.CommentSaveDto;
-import com.projvent.board.web.dto.post.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
