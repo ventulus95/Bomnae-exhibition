@@ -16,10 +16,12 @@ import com.projvent.board.web.dto.post.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -30,7 +32,6 @@ public class IndexController {
 
     private final PostsService postsService;
     private final CommentService commentService;
-    private final HttpSession httpSession;
     private final S3Service s3Service;
     private final GuestbookService guestbookService;
 
@@ -56,13 +57,6 @@ public class IndexController {
         model.addAttribute("post", dto);
         model.addAttribute("list", commentlist);
         return "post-update";
-    }
-
-    @DeleteMapping("/api/v1/posts/{id}")
-    @ResponseBody
-    public Long postDelete(@PathVariable Long id){
-        postsService.delete(id);
-        return id;
     }
 
     @GetMapping("/upload")
@@ -92,7 +86,6 @@ public class IndexController {
             }
         }
         return "redirect:/";
-
     }
 
     @PostMapping("/api/v1/s3upload")

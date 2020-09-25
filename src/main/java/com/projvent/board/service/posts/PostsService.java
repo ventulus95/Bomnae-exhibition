@@ -1,7 +1,11 @@
 package com.projvent.board.service.posts;
 
+import com.projvent.board.config.auth.LoginUser;
+import com.projvent.board.config.auth.dto.SessionUser;
 import com.projvent.board.web.domain.post.Post;
 import com.projvent.board.web.domain.post.PostRepository;
+import com.projvent.board.web.domain.user.User;
+import com.projvent.board.web.domain.user.UserRepository;
 import com.projvent.board.web.dto.post.PostsResponseDto;
 import com.projvent.board.web.dto.post.PostsSaveRequestDto;
 import com.projvent.board.web.dto.post.PostsUpadteRequestDto;
@@ -11,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -18,8 +23,11 @@ import java.util.stream.Collectors;
 public class PostsService {
 
     private final PostRepository postRepository;
+    private final UserRepository userRepository;
 
-    public Long save(PostsSaveRequestDto dto) {
+    public Long save(PostsSaveRequestDto dto, @LoginUser SessionUser user) {
+        Optional<User> user1 = userRepository.findByEmail(user.getEmail());
+        dto.setUser(user1.get());
         return postRepository.save(dto.toEntity()).getId();
     }
 

@@ -27,10 +27,7 @@ public class PostsApiController {
     public Long save(@RequestBody PostsSaveRequestDto dto, @LoginUser SessionUser user) throws IOException {
 //        String imgpath  = s3Service.upload(dto.getFile());
 //        dto.setFilePath(imgpath);
-        String email = user.getEmail();
-        Optional<User> u = userRepository.findByEmail(email);
-        dto.setUser(u.get());
-        return postsService.save(dto);
+        return postsService.save(dto, user);
     }
 
     @PutMapping("/api/v1/posts/{id}")
@@ -41,5 +38,11 @@ public class PostsApiController {
     @GetMapping("/api/v1/posts/{id}")
     public PostsResponseDto findById(@PathVariable Long id, @LoginUser SessionUser user){
         return postsService.findById(id);
+    }
+
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long postDelete(@PathVariable Long id){
+        postsService.delete(id);
+        return id;
     }
 }
