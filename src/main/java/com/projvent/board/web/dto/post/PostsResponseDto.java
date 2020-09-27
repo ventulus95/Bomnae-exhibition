@@ -11,11 +11,13 @@ public class PostsResponseDto {
     private User user;
     private String title;
     private String content;
+    private String filepath;
 
     public PostsResponseDto(Post entity){
         this.id = entity.getId();
         this.user = entity.getUser();
         this.title = entity.getTitle();
         this.content = entity.getContent();
+        this.filepath = entity.getFilePath();
     }
 }

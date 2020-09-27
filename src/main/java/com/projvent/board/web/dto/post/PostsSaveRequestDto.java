@@ -15,19 +15,17 @@ public class PostsSaveRequestDto {
     private String title;
     private String content;
     private User user;
-//    private MultipartFile file;
-//    private String filePath;
+    private MultipartFile file;
+    private String filePath;
 
-//    public void setFilePath(String filePath) {
-//        this.filePath = filePath;
-//    }
 
     @Builder
-    public PostsSaveRequestDto(String title, String content, User user){
+    public PostsSaveRequestDto(String title, String content, User user, MultipartFile file, String filePath){
         this.title = title;
         this.content = content;
         this.user = user;
-//        this.filePath = filePath;
+        this.file = file;
+        this.filePath = filePath;
     }
 
     public Post toEntity(){
@@ -35,7 +33,7 @@ public class PostsSaveRequestDto {
                 .title(title)
                 .content(content)
                 .user(user)
-//                .filePath(filePath)
+                .filePath(filePath)
                 .build();
     }
 }

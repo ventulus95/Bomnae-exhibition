@@ -12,17 +12,18 @@ var buttonJS = {
         });
     },
     save : function () {
-        var data = {
-            title: $('#title').val(),
-            content: $('#content').val()
-        };
-
+        var formData = new FormData();
+        formData.append('file', $('#file').get(0).files[0]);
+        formData.append('title', $('#title').val());
+        formData.append('content', $('#content').val());
         $.ajax({
             type: 'POST',
             url: '/api/v1/posts',
-            dataType: 'json',
-            contentType:'application/json; charset=utf-8',
-            data: JSON.stringify(data)
+            // dataType: 'json',
+            contentType: false,
+            processData: false,
+            // contentType:'application/json; charset=utf-8',
+            data: formData
         }).done(function() {
             alert('글이 등록되었습니다.');
             window.location.href = '/';

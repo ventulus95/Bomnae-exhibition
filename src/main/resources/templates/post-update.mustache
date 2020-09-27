@@ -20,6 +20,8 @@
                 <input type="text" class="form-control" id="author" value="{{post.user.name}}" readonly>
             </div>
         </form>
+        <h3>사진</h3>
+        <img src="{{post.filepath}}" alt="??? 안되는데요?">
         <a href="/" role="button" class="btn btn-secondary">취소</a>
         <button type="button" class="btn btn-primary"  id="btn-update">수정</button>
         <button type="button" class="btn btn-danger"  id="btn-delete">삭제</button>
@@ -43,6 +45,7 @@
             {{/list}}
             </tbody>
         </table>
+        
     </div>
     <div class="col-md-4">
         <h3>댓글 달기</h3>
